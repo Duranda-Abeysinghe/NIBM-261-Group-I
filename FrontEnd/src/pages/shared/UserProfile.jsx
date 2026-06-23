@@ -32,6 +32,14 @@ export default function UserProfile() {
       setError('Name must be at least 3 characters long.');
       return;
     }
+    setLoading(true);
+    try {
+      // SCRUM-88: Hitting the backend profile update handler
+      const response = await API.put(`/auth/profile/update`, { name: newName.trim() });
+      
+      if (response.data.success) {
+        setSuccess('Profile updated successfully!');
+        setIsEditing(false);
     
 return (
     <div style={{ padding: '24px', maxWidth: '500px' }}>

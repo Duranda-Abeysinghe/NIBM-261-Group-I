@@ -59,7 +59,41 @@ export default function MyRequests() {
         </button>
       </div>
 
-      
+      {success && <div className="alert alert-success">✅ {success}</div>}
+      {error   && <div className="alert alert-error">❌ {error}</div>}
+
+      {showForm && (
+        <div className="card" style={{ marginBottom: '20px', border: '2px solid #7c3aed' }}>
+          <h3 style={{ marginBottom: '16px', color: '#7c3aed' }}>📝 Submit New Request</h3>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label>Request Type</label>
+              <select value={form.type}
+                onChange={e => setForm({ ...form, type: e.target.value })}>
+                <option value="Leave Request">Leave Request</option>
+                <option value="Re-Evaluation">Re-Evaluation</option>
+                <option value="Certificate Request">Certificate Request</option>
+                <option value="Medical Certificate">Medical Certificate</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <label>Message *</label>
+              <textarea required rows="4"
+                placeholder="Describe your request in detail..."
+                value={form.message}
+                onChange={e => setForm({ ...form, message: e.target.value })} />
+            </div>
+            <div style={{ display: 'flex', gap: '12px' }}>
+              <button type="submit" className="btn btn-primary" disabled={saving}>
+                {saving ? '⏳ Submitting...' : '📨 Submit Request'}
+              </button>
+              <button type="button" className="btn btn-outline"
+                onClick={() => setShowForm(false)}>{t('cancel')}</button>
+            </div>
+          </form>
+        </div>
+      )}
 
       {loading ? (
         <div className="card text-center" style={{ padding: '40px' }}>

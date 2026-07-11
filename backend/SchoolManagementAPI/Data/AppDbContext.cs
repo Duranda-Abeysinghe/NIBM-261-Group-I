@@ -18,6 +18,10 @@ public class AppDbContext : DbContext
     public DbSet<Request> Requests { get; set; }
     public DbSet<Announcement> Announcements { get; set; }
 
+    // NEW DbSets
+    public DbSet<RequestHistory> RequestHistories { get; set; }
+    public DbSet<Notification> Notifications { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Student>()
@@ -31,5 +35,12 @@ public class AppDbContext : DbContext
             .WithMany()
             .HasForeignKey(c => c.TeacherId)
             .OnDelete(DeleteBehavior.SetNull);
+
+        // RequestHistory -> Request relationship
+        modelBuilder.Entity<RequestHistory>()
+            .HasOne(h => h.Request)
+            .WithMany(r => r.History)
+            .HasForeignKey(h => h.RequestId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

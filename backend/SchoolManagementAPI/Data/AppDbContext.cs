@@ -17,6 +17,8 @@ public class AppDbContext : DbContext
     public DbSet<Schedule> Schedules { get; set; }
     public DbSet<Request> Requests { get; set; }
     public DbSet<Announcement> Announcements { get; set; }
+    public DbSet<ClassSchedule> ClassSchedules { get; set; }
+    public DbSet<Class> Classes { get; set; }
 
     // NEW DbSets
     public DbSet<RequestHistory> RequestHistories { get; set; }

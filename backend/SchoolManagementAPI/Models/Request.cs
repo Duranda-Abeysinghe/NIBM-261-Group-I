@@ -10,4 +10,7 @@ public class Request
     public string Status { get; set; } = "Pending";
     public DateTime CreatedAt { get; set; } = DateTime.Now;
     public Student? Student { get; set; }
+
+    // NEW: history entries for this request
+    public List<RequestHistory> History { get; set; } = new List<RequestHistory>();
 }

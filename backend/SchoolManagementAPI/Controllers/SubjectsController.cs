@@ -42,27 +42,7 @@ public class SubjectsController : ControllerBase
         }
     }
 
-    [HttpPost]
-    [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> Create([FromBody] Subject subject)
-    {
-        try
-        {
-            _db.Subjects.Add(subject);
-            await _db.SaveChangesAsync();
-            return Ok(new ResponseDto
-            {
-                Success = true, Message = "Subject added", Data = subject
-            });
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, new ResponseDto
-            {
-                Success = false, Message = ex.Message
-            });
-        }
-    }
+   
 
     [HttpDelete("{id}")]
     [Authorize(Roles = "Admin")]

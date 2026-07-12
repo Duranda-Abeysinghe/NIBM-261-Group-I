@@ -67,55 +67,7 @@ export default function Announcements() {
         </button>
       </div>
 
-      {success && <div className="alert alert-success">✅ {success}</div>}
-      {error   && <div className="alert alert-error">❌ {error}</div>}
-
-      {showForm && (
-        <div className="card" style={{ marginBottom: '20px', border: '2px solid #2563eb' }}>
-          <h3 style={{ marginBottom: '16px', color: '#2563eb' }}>📝 New Announcement</h3>
-          <form onSubmit={handleAdd}>
-            <div className="grid-2">
-              <div className="form-group">
-                <label>Title *</label>
-                <input required placeholder="Announcement title..."
-                  value={form.title}
-                  onChange={e => setForm({ ...form, title: e.target.value })} />
-              </div>
-              <div className="form-group">
-                <label>Target Audience</label>
-                <select value={form.target}
-                  onChange={e => setForm({ ...form, target: e.target.value })}>
-                  <option value="All">All</option>
-                  <option value="Students">Students</option>
-                  <option value="Teachers">Teachers</option>
-                </select>
-              </div>
-            </div>
-            <div className="form-group">
-              <label>Message *</label>
-              <textarea required rows="3" placeholder="Write your announcement here..."
-                value={form.message}
-                onChange={e => setForm({ ...form, message: e.target.value })} />
-            </div>
-            <div className="form-group" style={{ maxWidth: '200px' }}>
-              <label>Priority</label>
-              <select value={form.priority}
-                onChange={e => setForm({ ...form, priority: e.target.value })}>
-                <option value="Normal">Normal</option>
-                <option value="High">High</option>
-                <option value="Urgent">Urgent</option>
-              </select>
-            </div>
-            <div style={{ display: 'flex', gap: '12px' }}>
-              <button type="submit" className="btn btn-primary" disabled={saving}>
-                {saving ? '⏳ Publishing...' : '📢 Publish'}
-              </button>
-              <button type="button" className="btn btn-outline"
-                onClick={() => setShowForm(false)}>Cancel</button>
-            </div>
-          </form>
-        </div>
-      )}
+      
 
       {loading ? (
         <div className="card text-center" style={{ padding: '40px' }}>

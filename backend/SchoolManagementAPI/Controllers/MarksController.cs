@@ -29,7 +29,13 @@ public class MarksController : ControllerBase
             .Where(m => m.StudentId == studentId)
             .ToListAsync());
 
-   
+    // GET /api/marks/count
+    [HttpGet("count")]
+    public async Task<IActionResult> GetCount()
+    {
+        try { return Ok(await _db.Marks.CountAsync()); }
+        catch (Exception ex) { return StatusCode(500, new ResponseDto { Success = false, Message = ex.Message }); }
+    }
 
     [HttpPost]
     [Authorize(Roles = "Teacher,Admin")]
